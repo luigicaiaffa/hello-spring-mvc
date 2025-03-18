@@ -1,5 +1,7 @@
 package org.lessons.java.spring.hello_spring_mvc.controllers;
 
+import java.util.Random;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,4 +22,17 @@ public class MainController {
         model.addAttribute("name", name);
         return "greeting";
     }
+
+    @GetMapping("/user")
+    public String getMethodName(@RequestParam(name = "name") String name,
+            @RequestParam(name = "surname") String surname, Model model) {
+
+        Random random = new Random();
+        int num = random.nextInt(999);
+        model.addAttribute("name", name);
+        model.addAttribute("surname", surname);
+        model.addAttribute("num", num);
+        return "user";
+    }
+
 }
